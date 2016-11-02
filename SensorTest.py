@@ -35,7 +35,7 @@ def measure():
     stop = time.time()
 
   elapsed = stop-start
-  distance = (elapsed * 34300)/2
+  distance = elapsed #* 34300)/2
 
   return distance
 
