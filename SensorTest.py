@@ -71,6 +71,7 @@ GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
 
 # Set trigger to False (Low)
 GPIO.output(GPIO_TRIGGER, False)
+time.sleep(.5)
 
 # Wrap main content in a try block so we can
 # catch the user pressing CTRL-C and run the
@@ -79,13 +80,13 @@ GPIO.output(GPIO_TRIGGER, False)
 # messages.
 try:
 
-  while True:
+    while True:
 
-    distance = measure_average()
-    print "Distance : %.1f" % distance
-    time.sleep(1)
+        distance = measure()
+        print "Distance : %.1f" % distance
+        time.sleep(0.1)
 
 except KeyboardInterrupt:
-  # User pressed CTRL-C
-  # Reset GPIO settings
-  GPIO.cleanup()
+    # User pressed CTRL-C
+    # Reset GPIO settings
+    GPIO.cleanup()
