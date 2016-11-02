@@ -1,92 +1,53 @@
-#!/usr/bin/python
-#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-#|R|a|s|p|b|e|r|r|y|P|i|-|S|p|y|.|c|o|.|u|k|
-#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-#
-# ultrasonic_2.py
-# Measure distance using an ultrasonic module
-# in a loop.
-#
-# Author : Matt Hawkins
-# Date   : 28/01/2013
-# Last Edited: 11/01/2016
-
-# -----------------------
-# Import required Python libraries
-# -----------------------
-import time
+#Libraries
 import RPi.GPIO as GPIO
+import time
 
-# -----------------------
-# Define some functions
-# -----------------------
-
-def measure():
-  # This function measures a distance
-  GPIO.output(GPIO_TRIGGER, True)
-  time.sleep(0.00001)
-  GPIO.output(GPIO_TRIGGER, False)
-  start = time.time()
-
-  while GPIO.input(GPIO_ECHO)==0:
-    start = time.time()
-
-  while GPIO.input(GPIO_ECHO)==1:
-    stop = time.time()
-
-  elapsed = stop-start
-  distance = elapsed #* 34300)/2
-
-  return distance
-
-def measure_average():
-  # This function takes 3 measurements and
-  # returns the average.
-  distance1=measure()
-  time.sleep(0.1)
-  distance2=measure()
-  time.sleep(0.1)
-  distance3=measure()
-  distance = distance1 + distance2 + distance3
-  distance = distance / 3
-  return distance
-
-# -----------------------
-# Main Script
-# -----------------------
-
-# Use BCM GPIO references
-# instead of physical pin numbers
+#GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 
-# Define GPIO to use on Pi
-GPIO_TRIGGER = 23
-GPIO_ECHO    = 24
+#set GPIO Pins
+GPIO_TRIGGER = 18
+GPIO_ECHO = 24
 
-print "Ultrasonic Measurement"
+#set GPIO direction (IN / OUT)
+GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
+GPIO.setup(GPIO_ECHO, GPIO.IN)
 
-# Set pins as output and input
-GPIO.setup(GPIO_TRIGGER,GPIO.OUT)  # Trigger
-GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
+def distance():
+    # set Trigger to HIGH
+    GPIO.output(GPIO_TRIGGER, True)
 
-# Set trigger to False (Low)
-GPIO.output(GPIO_TRIGGER, False)
-time.sleep(.5)
+    # set Trigger after 0.01ms to LOW
+    time.sleep(0.00001)
+    GPIO.output(GPIO_TRIGGER, False)
 
-# Wrap main content in a try block so we can
-# catch the user pressing CTRL-C and run the
-# GPIO cleanup function. This will also prevent
-# the user seeing lots of unnecessary error
-# messages.
-try:
+    StartTime = time.time()
+    StopTime = time.time()
 
-    while True:
+    # save StartTime
+    while GPIO.input(GPIO_ECHO) == 0:
+        StartTime = time.time()
 
-        distance = measure()
-        print "Distance : %.1f" % distance
-        time.sleep(0.1)
+    # save time of arrival
+    while GPIO.input(GPIO_ECHO) == 1:
+        StopTime = time.time()
 
-except KeyboardInterrupt:
-    # User pressed CTRL-C
-    # Reset GPIO settings
-    GPIO.cleanup()
+    # time difference between start and arrival
+    TimeElapsed = StopTime - StartTime
+    # multiply with the sonic speed (34300 cm/s)
+    # and divide by 2, because there and back
+    distance = (TimeElapsed * 34300) / 2
+
+    return distance
+
+if __name__ == '__main__':
+    try:
+        while True:
+            dist = distance()
+            print ("Measured Distance = %.1f cm" % dist)
+            time.sleep(1)
+
+        # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        print("Measurement stopped by User")
+        GPIO.cleanup()
