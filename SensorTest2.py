@@ -16,6 +16,7 @@ echoPin = 22
 
 io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
+io.setup(echoPin,io.IN)
 
 #set to high to begin with
 io.output(trigPin, True)
