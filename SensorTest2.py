@@ -14,7 +14,7 @@ io.setmode(io.BCM)
 trigPin = 23
 echoPin = 24
 
-io.setup(senPin, io.IN)
+#io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
 io.setup(echoPin,io.IN)
 
