@@ -12,6 +12,7 @@ io.setmode(io.BCM)
 #pins
 senPin = 24
 trigPin = 23
+echoPin = 22
 
 io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
@@ -22,6 +23,7 @@ io.output(trigPin, True)
 #variables
 #int senValue = 0
 #int distValue = 0
+bool measureType = 1 #1 for echo, 0 for analog sensor pin
 
 time.sleep(0.5)
 
@@ -29,8 +31,19 @@ def distMeasure():
     io.output(trigPin, False) #low trigger
     time.sleep(0.00001)
     io.output(trigPin, True)
-    senValue = io.input(senPin)
-    distMeasure = senValue*0.718
+    while io.input(echoPin) == 0:
+        StartTime = time.time()
+    # save time of arrival
+    while GPIO.input(GPIO_ECHO) == 1:
+        StopTime = time.time()
+    # time difference between start and arrival
+    TimeElapsed = StopTime - StartTime
+
+    if measureType == 1:
+        distMeasure = TimeElapsed/50
+    elif measureType == 0:
+        senValue = io.input(senPin)
+        distMeasure = senValue*0.718
     return distMeasure
 
 try:
