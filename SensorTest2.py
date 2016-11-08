@@ -35,7 +35,7 @@ def distMeasure():
     while io.input(echoPin) == 0:
         StartTime = time.time()
     # save time of arrival
-    while GPIO.input(GPIO_ECHO) == 1:
+    while io.input(echoPin) == 1:
         StopTime = time.time()
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
