@@ -36,7 +36,7 @@ def distMeasure():
     StartTime = time.time()
     print(StartTime)
     while io.input(echoPin) == 0:
-        pass
+        continue
 
     StopTime = time.time()
     print(StopTime)
