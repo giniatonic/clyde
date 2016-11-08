@@ -33,9 +33,10 @@ def distMeasure():
     time.sleep(0.0001)
     io.output(trigPin, False)
 
+    StartTime = time.time()
     while io.input(echoPin) == 0:
         print('my echo is low')
-        StartTime = time.time()
+        #StartTime = time.time()
     # save time of arrival
     while io.input(echoPin) == 1:
         print('my echo is high')
