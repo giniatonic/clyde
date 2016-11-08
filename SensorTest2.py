@@ -1,0 +1,35 @@
+#Ginny Schilling
+#Clyde and stuff
+#11/7/2016
+
+#Libraries
+import RPi.GPIO as io
+import time
+
+#setup
+io.setup(io.BCM)
+
+#pins
+senPin = 23
+trigPin = 24
+
+io.setup(senPin, io.IN)
+io.setup(trigPin, io.OUT)
+
+#variables
+#int senValue = 0
+#int distValue = 0
+
+time.sleep(0.5)
+
+def distMeasure():
+    print('Distance:')
+    io.output(trigPin, True)
+    time.sleep(0.00001)
+    io.output(trigPin, False)
+    senValue = io.input(senPin)
+    distMeasure = senValue*0.718
+    print(distMeasure)
+    print('cm \n')
+
+    return distMeasure
