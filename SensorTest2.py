@@ -23,7 +23,7 @@ io.output(trigPin, True)
 #variables
 #int senValue = 0
 #int distValue = 0
-int measureType = 1 #1 for echo, 0 for analog sensor pin
+int measType = 1
 
 time.sleep(0.5)
 
@@ -39,9 +39,9 @@ def distMeasure():
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
 
-    if measureType == 1:
+    if measType == 1:
         distMeasure = TimeElapsed/50
-    elif measureType == 0:
+    elif measType == 0:
         senValue = io.input(senPin)
         distMeasure = senValue*0.718
     return distMeasure
