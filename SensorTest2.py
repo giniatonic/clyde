@@ -30,7 +30,7 @@ time.sleep(0.5)
 
 def distMeasure():
     io.output(trigPin, True) #low trigger
-    time.sleep(0.00001)
+    time.sleep(0.0001)
     io.output(trigPin, False)
 
     StartTime = time.time()
