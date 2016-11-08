@@ -7,11 +7,11 @@ import RPi.GPIO as io
 import time
 
 #setup
-io.setup(io.BCM)
+io.setmode(io.BCM)
 
 #pins
-senPin = 23
-trigPin = 24
+senPin = 24
+trigPin = 23
 
 io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
