@@ -40,6 +40,8 @@ def distMeasure():
     StopTime = time.time()
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
+    TimeElapsed = TimeElapsed*(1*10^6)
+    print('Time: %.1f us' % TimeElapsed)
 
     if measType == 1:
         distMeasure = TimeElapsed/50
@@ -51,7 +53,7 @@ def distMeasure():
 try:
     while True:
         dist = distMeasure()
-        print('Distance = %.1f cm' % dist)
+        #print('Distance = %.1f cm' % dist)
         time.sleep(.5)
 
 except KeyboardInterrupt:
