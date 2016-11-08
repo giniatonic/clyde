@@ -34,7 +34,7 @@ try:
     while True:
         dist = distMeasure()
         print('Distance = %.1f cm' % dist)
-        time.sleep(.25)
+        time.sleep(.5)
 
 except KeyboardInterrupt:
     print('Measurement stopped by user')
