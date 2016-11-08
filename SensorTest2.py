@@ -10,16 +10,16 @@ import time
 io.setmode(io.BCM)
 
 #pins
-senPin = 24
+#senPin = 24
 trigPin = 23
-echoPin = 22
+echoPin = 24
 
 io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
 io.setup(echoPin,io.IN)
 
 #set to low to begin with
-io.output(trigPin, False)
+io.output(trigPin, True)
 
 #variables
 #int senValue = 0
@@ -29,9 +29,9 @@ measType = 1
 time.sleep(0.5)
 
 def distMeasure():
-    io.output(trigPin, True) #low trigger
+    io.output(trigPin, False) #low trigger
     time.sleep(0.00001)
-    io.output(trigPin, False)
+    io.output(trigPin, True)
 
     while io.input(echoPin) == 0:
         print('my echo is low')
