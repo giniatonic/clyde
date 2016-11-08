@@ -23,7 +23,7 @@ io.output(trigPin, True)
 #variables
 #int senValue = 0
 #int distValue = 0
-int meas = 1
+measType = 1
 
 time.sleep(0.5)
 
@@ -39,9 +39,9 @@ def distMeasure():
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
 
-    if meas == 1:
+    if measType == 1:
         distMeasure = TimeElapsed/50
-    elif meas == 0:
+    elif measType == 0:
         senValue = io.input(senPin)
         distMeasure = senValue*0.718
     return distMeasure
