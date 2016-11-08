@@ -23,7 +23,7 @@ io.output(trigPin, True)
 #variables
 #int senValue = 0
 #int distValue = 0
-bool measureType = 1 #1 for echo, 0 for analog sensor pin
+int measureType = 1 #1 for echo, 0 for analog sensor pin
 
 time.sleep(0.5)
 
