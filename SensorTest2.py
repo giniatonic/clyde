@@ -31,7 +31,7 @@ def distMeasure():
     return distMeasure
 
 try:
-    while true:
+    while True:
         dist = distMeasure()
         print('Distance = %.1f cm', dist)
         time.sleep(.25)
