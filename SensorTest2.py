@@ -33,7 +33,7 @@ def distMeasure():
 try:
     while True:
         dist = distMeasure()
-        print('Distance = %.1f cm', dist)
+        print('Distance = %.1f cm' % dist)
         time.sleep(.25)
 
 except KeyboardInterrupt:
