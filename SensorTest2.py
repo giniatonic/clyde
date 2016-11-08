@@ -18,8 +18,8 @@ io.setup(senPin, io.IN)
 io.setup(trigPin, io.OUT)
 io.setup(echoPin,io.IN)
 
-#set to high to begin with
-io.output(trigPin, True)
+#set to low to begin with
+io.output(trigPin, False)
 
 #variables
 #int senValue = 0
@@ -29,9 +29,10 @@ measType = 1
 time.sleep(0.5)
 
 def distMeasure():
-    io.output(trigPin, False) #low trigger
+    io.output(trigPin, True) #low trigger
     time.sleep(0.00001)
-    io.output(trigPin, True)
+    io.output(trigPin, False)
+
     while io.input(echoPin) == 0:
         StartTime = time.time()
     # save time of arrival
