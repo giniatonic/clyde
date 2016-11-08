@@ -23,13 +23,19 @@ io.setup(trigPin, io.OUT)
 time.sleep(0.5)
 
 def distMeasure():
-    print('Distance:')
     io.output(trigPin, True)
     time.sleep(0.00001)
     io.output(trigPin, False)
     senValue = io.input(senPin)
     distMeasure = senValue*0.718
-    print(distMeasure)
-    print('cm \n')
-
     return distMeasure
+
+try:
+    while true:
+        dist = distMeasure()
+        print('Distance = %.1f cm', dist)
+        time.sleep(.25)
+
+except KeyboardInterrupt:
+    print('Measurement stopped by user')
+    io.cleanup()
