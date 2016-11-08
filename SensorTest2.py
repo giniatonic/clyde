@@ -34,10 +34,12 @@ def distMeasure():
     io.output(trigPin, False)
 
     StartTime = time.time()
+    print(StartTime)
     while io.input(echoPin) == 0:
         pass
 
     StopTime = time.time()
+    print(StopTime)
     # time difference between start and arrival
     TimeElapsed = StopTime - StartTime
     TimeElapsed = TimeElapsed*(1*10^6)
