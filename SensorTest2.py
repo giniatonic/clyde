@@ -11,7 +11,7 @@ io.setmode(io.BCM)
 
 #pins
 #senPin = 24
-trigPin = 23
+trigPin = 18
 echoPin = 24
 
 #io.setup(senPin, io.IN)
