@@ -40,6 +40,14 @@ def distance():
 
     return distance
 
+def distavg():
+    d1 = distance()
+    d2 = distance()
+    d3 = distance()
+    distavg = ((d1+d2+d3)/3)
+
+    return distavg
+
 if __name__ == '__main__':
     try:
         while True:
