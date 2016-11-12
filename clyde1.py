@@ -24,12 +24,8 @@ class USThreads(threading.Thread):
         self.echopin = echopin
 
     def run(self):
-        while True:
-            if exitflag == 1:
-                return
-
-            dist = measure_average(self.trigpin,self.echopin)
-            print('Distance: %.1f' % dist)
+        dist = measure_average(self.trigpin,self.echopin)
+        print('Distance: %.1f' % dist)
 
 def measure(trigpin,echopin):
     # This function measures a distance
@@ -49,16 +45,17 @@ def measure(trigpin,echopin):
     return distance
 
 def measure_average(trigpin,echopin):
-    # This function takes 3 measurements and
-    # returns the average.
-    distance1=measure(trigpin,echopin)
-    time.sleep(0.1)
-    distance2=measure(trigpin,echopin)
-    time.sleep(0.1)
-    distance3=measure(trigpin,echopin)
-    distance = distance1 + distance2 + distance3
-    distance = distance / 3
-    return distance
+    while not exitflag:
+        # This function takes 3 measurements and
+        # returns the average.
+        distance1=measure(trigpin,echopin)
+        time.sleep(0.1)
+        distance2=measure(trigpin,echopin)
+        time.sleep(0.1)
+        distance3=measure(trigpin,echopin)
+        distance = distance1 + distance2 + distance3
+        distance = distance / 3
+        return distance
 
 #Initialize thread 1
 t1 = USThreads(1,trig1,echo1)
@@ -67,9 +64,9 @@ t1 = USThreads(1,trig1,echo1)
 try:
     #start thread
     t1.start()
-    t1.join()
+
 except KeyboardInterrupt:
     exitflag = 1
-    #t1.join()
+    t1.join()
     GPIO.cleanup()
 #GPIO.cleanup()
