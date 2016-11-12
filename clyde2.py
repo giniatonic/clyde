@@ -60,7 +60,7 @@ try:
 
     while True:
         print('Stilling running!')
-        sleep(1)
+        time.sleep(1)
 
 except KeyboardInterrupt:
     thread_stop.set()
