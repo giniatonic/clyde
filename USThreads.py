@@ -2,6 +2,7 @@ import threading
 import time
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
 
 class USThreads(threading.Thread):
     def __init__(self, threadID, trigpin, echopin):
