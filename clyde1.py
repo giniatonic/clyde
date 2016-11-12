@@ -60,7 +60,7 @@ def measure_average(trigpin,echopin):
     return distance
 
 #Initialize thread 1
-t1 = UST.USThreads(1,trig1,echo1)
+t1 = USThreads(1,trig1,echo1)
 
 #main Codes
 try:
