@@ -60,9 +60,9 @@ def measure_average(trigpin,echopin):
     distance = distance / 3
     return distance
 
-t1_stop = threading.Event()
+#t1_stop = threading.Event()
 #Initialize thread 1
-t1 = USThreads(1,trig1,echo1,t1_stop)
+t1 = USThreads(1,trig1,echo1)
 
 #main Codes
 try:
