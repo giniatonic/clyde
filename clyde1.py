@@ -9,7 +9,7 @@ import USThreads as UST
 trig1 = 23
 echo1 = 24
 
-t1 = UST(1,trig1,echo1)
+t1 = UST.USThreads(1,trig1,echo1)
 
 #main Codes
 try:
