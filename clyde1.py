@@ -1,5 +1,6 @@
 #Libraries
 import time
+import RPi.GPIO as GPIO
 import USThreads as UST
 
 #GPIO Mode (BOARD / BCM)
