@@ -1,6 +1,6 @@
 #Libraries
 import time
-import USThreads as UST, exitflag
+import USThreads as UST
 
 #GPIO Mode (BOARD / BCM)
 
@@ -16,7 +16,7 @@ try:
     t1.start()
 
 except KeyboardInterrupt:
-    exitflag = 1
+    UST.exitflag = 1
     t1.join()
     GPIO.cleanup()
 GPIO.cleanup()
