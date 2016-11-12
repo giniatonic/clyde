@@ -16,17 +16,20 @@ GPIO.output(trig1,False)
 
 #Define my stupid thread class and stuff
 class USThreads(threading.Thread):
-    def __init__(self, threadID, trigpin, echopin, stop_event):
-        threading.Thread.__init__(self, args = (stop_event))
+    def __init__(self, threadID, trigpin, echopin):
+        threading.Thread.__init__(self
         self.threadID = threadID
         self.trigpin = trigpin
         self.echopin = echopin
-        self.stop_event = stop_event
+        self.stop = False
 
     def run(self):
-        while not self.stop_event.is_set():
+        while not self.stop:
             dist = measure_average(self.trigpin,self.echopin)
             print('Distance: %.1f' % dist)
+
+    def stop(self):
+        self.stop = True
 
 def measure(trigpin,echopin):
     # This function measures a distance
@@ -67,7 +70,7 @@ try:
     t1.start()
 
 except KeyboardInterrupt:
-    t1_stop.set()
+    t1.stop()
     t1.join()
     GPIO.cleanup()
 #GPIO.cleanup()
