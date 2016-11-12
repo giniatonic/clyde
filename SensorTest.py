@@ -1,57 +1,85 @@
-#Libraries
-import RPi.GPIO as GPIO
-import time
+# ultrasonic_2.py
+# Measure distance using an ultrasonic module
+# in a loop.
+#
+# Author : Matt Hawkins
+# Date   : 28/01/2013
 
-#GPIO Mode (BOARD / BCM)
+# -----------------------
+# Import required Python libraries
+# -----------------------
+import time
+import RPi.GPIO as GPIO
+
+# -----------------------
+# Define some functions
+# -----------------------
+
+def measure():
+  # This function measures a distance
+  GPIO.output(GPIO_TRIGGER, True)
+  time.sleep(0.00001)
+  GPIO.output(GPIO_TRIGGER, False)
+  start = time.time()
+
+  while GPIO.input(GPIO_ECHO)==0:
+    start = time.time()
+
+  while GPIO.input(GPIO_ECHO)==1:
+    stop = time.time()
+
+  elapsed = stop-start
+  distance = (elapsed * 34300)/2
+
+  return distance
+
+def measure_average():
+  # This function takes 3 measurements and
+  # returns the average.
+  distance1=measure()
+  time.sleep(0.1)
+  distance2=measure()
+  time.sleep(0.1)
+  distance3=measure()
+  distance = distance1 + distance2 + distance3
+  distance = distance / 3
+  return distance
+
+# -----------------------
+# Main Script
+# -----------------------
+
+# Use BCM GPIO references
+# instead of physical pin numbers
 GPIO.setmode(GPIO.BCM)
 
-#set GPIO Pins
-GPIO_TRIGGER = 18
-GPIO_ECHO = 24
+# Define GPIO to use on Pi
+GPIO_TRIGGER = 23
+GPIO_ECHO    = 24
 
-#set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+print "Ultrasonic Measurement"
 
+# Set pins as output and input
+GPIO.setup(GPIO_TRIGGER,GPIO.OUT)  # Trigger
+GPIO.setup(GPIO_ECHO,GPIO.IN)      # Echo
+
+# Set trigger to False (Low)
 GPIO.output(GPIO_TRIGGER, False)
 
-def distance():
-    # set Trigger to HIGH
-    GPIO.output(GPIO_TRIGGER, True)
+# Wrap main content in a try block so we can
+# catch the user pressing CTRL-C and run the
+# GPIO cleanup function. This will also prevent
+# the user seeing lots of unnecessary error
+# messages.
+try:
 
-    # set Trigger after 0.01ms to LOW
-    time.sleep(0.0001)
-    GPIO.output(GPIO_TRIGGER, False)
+  while True:
 
-    StartTime = time.time()
-    GPIO.wait_for_edge(GPIO_ECHO,GPIO.RISING)
-    StopTime = time.time()
+    distance = measure_average()
+    print "Distance : %.1f" % distance
+    time.sleep(1)
 
-
-    # time difference between start and arrival
-    TimeElapsed = StopTime - StartTime
-    # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
-
-    return distance
-
-def distavg():
-    d1 = distance()
-    d2 = distance()
-    d3 = distance()
-    distavg = ((d1+d2+d3)/3)
-
-    return distavg
-
-if __name__ == '__main__':
-    try:
-        while True:
-            dist = distance()
-            print ("Measured Distance = %.1f cm" % dist)
-            time.sleep(.5)
-
-        # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-        GPIO.cleanup()
+except KeyboardInterrupt:
+  # User pressed CTRL-C
+  # Reset GPIO settings
+  GPIO.cleanup()
