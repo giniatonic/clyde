@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import USThreads as UST
 
 #GPIO Mode (BOARD / BCM)
-
+GPIO.setmode(GPIO.BCM)
 
 #Define pins
 trig1 = 23
