@@ -24,10 +24,12 @@ class USThreads(threading.Thread):
         self.echopin = echopin
 
     def run(self):
-        while not exitflag:
+        while True:
+            if exitflag == 1:
+                return
+
             dist = measure_average(self.trigpin,self.echopin)
             print('Distance: %.1f' % dist)
-
 
 def measure(trigpin,echopin):
     # This function measures a distance
