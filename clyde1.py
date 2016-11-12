@@ -17,7 +17,7 @@ try:
     t1.start()
 
 except KeyboardInterrupt:
-    UST.exitflag = 1
+    t1.exitflag = 1
     t1.join()
     GPIO.cleanup()
 GPIO.cleanup()

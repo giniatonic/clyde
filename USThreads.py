@@ -2,8 +2,6 @@ import threading
 import time
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
-exitflag = 0
 
 class USThreads(threading.Thread):
     def __init__(self, threadID, trigpin, echopin):
@@ -11,6 +9,8 @@ class USThreads(threading.Thread):
         self.threadID = threadID
         self.trigpin = trigpin
         self.echopin = echopin
+        GPIO.setmode(GPIO.BCM)
+        exitflag = 0
         GPIO.setup(trigpin,GPIO.OUT)
         GPIO.setup(echopin,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
         GPIO.output(trigpin,False)
