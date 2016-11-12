@@ -17,7 +17,7 @@ GPIO.output(trig1,False)
 #Define my stupid thread class and stuff
 class USThreads(threading.Thread):
     def __init__(self, threadID, trigpin, echopin, stop_event):
-        threading.Thread.__init__(self)
+        threading.Thread.__init__(self, args = (stop_event))
         self.threadID = threadID
         self.trigpin = trigpin
         self.echopin = echopin
