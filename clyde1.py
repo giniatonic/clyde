@@ -33,7 +33,7 @@ def measure(trigpin,echopin):
     # This function measures a distance
     GPIO.output(trigpin, True)
     time.sleep(0.00001)
-    GPIO.output(echopin, False)
+    GPIO.output(trigpin, False)
     start = time.time()
 
     while GPIO.input(echopin)==0:
@@ -69,5 +69,5 @@ try:
 except KeyboardInterrupt:
     t1.exitflag = 1
     t1.join()
-    #GPIO.cleanup()
+    GPIO.cleanup()
 #GPIO.cleanup()
