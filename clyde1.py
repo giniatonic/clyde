@@ -10,6 +10,10 @@ GPIO.setmode(GPIO.BCM)
 trig1 = 23
 echo1 = 24
 
+GPIO.setup(trig1,GPIO.OUT)
+GPIO.setup(echo1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
+GPIO.output(trig1,False)
+
 t1 = UST.USThreads(1,trig1,echo1)
 
 #main Codes

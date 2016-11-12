@@ -12,9 +12,6 @@ class USThreads(threading.Thread):
         self.echopin = echopin
         #GPIO.setmode(GPIO.BCM)
         self.exitflag = 0
-        GPIO.setup(trigpin,GPIO.OUT)
-        GPIO.setup(echopin,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
-        GPIO.output(trigpin,False)
 
     def run(self):
         while not self.exitflag:
