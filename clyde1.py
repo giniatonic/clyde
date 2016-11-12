@@ -14,18 +14,19 @@ GPIO.setup(trig1,GPIO.OUT)
 GPIO.setup(echo1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(trig1,False)
 
-exitflag = 0
 #Define my stupid thread class and stuff
 class USThreads(threading.Thread):
-    def __init__(self, threadID, trigpin, echopin):
+    def __init__(self, threadID, trigpin, echopin, stop_event):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.trigpin = trigpin
         self.echopin = echopin
+        self.stop_event = stop_event
 
     def run(self):
-        dist = measure_average(self.trigpin,self.echopin)
-        print('Distance: %.1f' % dist)
+        while not self.stop_event:
+            dist = measure_average(self.trigpin,self.echopin)
+            print('Distance: %.1f' % dist)
 
 def measure(trigpin,echopin):
     # This function measures a distance
@@ -45,20 +46,20 @@ def measure(trigpin,echopin):
     return distance
 
 def measure_average(trigpin,echopin):
-    while not exitflag:
-        # This function takes 3 measurements and
-        # returns the average.
-        distance1=measure(trigpin,echopin)
-        time.sleep(0.1)
-        distance2=measure(trigpin,echopin)
-        time.sleep(0.1)
-        distance3=measure(trigpin,echopin)
-        distance = distance1 + distance2 + distance3
-        distance = distance / 3
-        return distance
+    # This function takes 3 measurements and
+    # returns the average.
+    distance1=measure(trigpin,echopin)
+    time.sleep(0.1)
+    distance2=measure(trigpin,echopin)
+    time.sleep(0.1)
+    distance3=measure(trigpin,echopin)
+    distance = distance1 + distance2 + distance3
+    distance = distance / 3
+    return distance
 
+t1_stop = threading.Event()
 #Initialize thread 1
-t1 = USThreads(1,trig1,echo1)
+t1 = USThreads(1,trig1,echo1,t1_stop)
 
 #main Codes
 try:
@@ -66,7 +67,7 @@ try:
     t1.start()
 
 except KeyboardInterrupt:
-    exitflag = 1
+    t1_stop.set()
     t1.join()
     GPIO.cleanup()
 #GPIO.cleanup()
