@@ -24,7 +24,8 @@ def distance():
     GPIO.output(GPIO_TRIGGER, False)
 
     StartTime = time.time()
-    while GPIO.input(GPIO_ECHO) == GPIO.LOW
+
+    while GPIO.input(GPIO_ECHO) == GPIO.LOW:
         a = 'nothing'
 
     #GPIO.wait_for_edge(GPIO_ECHO,GPIO.RISING)
