@@ -53,7 +53,7 @@ def measure_average(trigpin,echopin):
 thread_stop = threading.Event()
 threads = []
 
-threads[0] = threading.Thread(target=us_run, args=(TRIG1, ECHO1, thread_stop))
+threads.append(threading.Thread(target=us_run, args=(TRIG1, ECHO1, thread_stop)))
 
 try:
     threads[0].start()
