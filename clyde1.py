@@ -20,7 +20,7 @@ class USThreads(threading.Thread):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.trigpin = trigpin
-        self.echopin = echop
+        self.echopin = echopin
         self.exitflag = 0
 
     def run(self):
