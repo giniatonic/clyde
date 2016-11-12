@@ -54,7 +54,7 @@ def measure_average():
 GPIO.setmode(GPIO.BCM)
 
 # Define GPIO to use on Pi
-GPIO_TRIGGER = 23
+GPIO_TRIGGER = 18
 GPIO_ECHO    = 24
 
 print "Ultrasonic Measurement"
