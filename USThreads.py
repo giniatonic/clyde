@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 exitflag = 0
 
-class USThreads(Thread):
+class USThreads(threading.Thread):
     def __init__(self, threadID, trigpin, echopin):
         threading.Thread.__init__(self)
         self.threadID = threadID
