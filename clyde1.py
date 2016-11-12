@@ -14,6 +14,7 @@ GPIO.setup(trig1,GPIO.OUT)
 GPIO.setup(echo1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(trig1,False)
 
+exitflag = 0
 #Define my stupid thread class and stuff
 class USThreads(threading.Thread):
     def __init__(self, threadID, trigpin, echopin):
@@ -21,10 +22,9 @@ class USThreads(threading.Thread):
         self.threadID = threadID
         self.trigpin = trigpin
         self.echopin = echopin
-        self.exitflag = 0
 
     def run(self):
-        while not self.exitflag:
+        while not exitflag:
             dist = measure_average(self.trigpin,self.echopin)
             print('Distance: %.1f' % dist)
 
@@ -67,7 +67,7 @@ try:
     t1.start()
 
 except KeyboardInterrupt:
-    t1.exitflag = 1
+    exitflag = 1
     t1.join()
     GPIO.cleanup()
 #GPIO.cleanup()
