@@ -10,13 +10,13 @@ class USThreads(threading.Thread):
         self.trigpin = trigpin
         self.echopin = echopin
         GPIO.setmode(GPIO.BCM)
-        exitflag = 0
+        self.exitflag = 0
         GPIO.setup(trigpin,GPIO.OUT)
         GPIO.setup(echopin,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
         GPIO.output(trigpin,False)
 
     def run(self):
-        while not exitflag:
+        while not self.exitflag:
             dist = measure_average(self.trigpin,self.echopin)
             print('Distance: %.1f' % dist)
 
