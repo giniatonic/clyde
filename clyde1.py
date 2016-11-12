@@ -20,8 +20,7 @@ class USThreads(threading.Thread):
         threading.Thread.__init__(self)
         self.threadID = threadID
         self.trigpin = trigpin
-        self.echopin = echopin
-        #GPIO.setmode(GPIO.BCM)
+        self.echopin = echop
         self.exitflag = 0
 
     def run(self):
@@ -70,5 +69,5 @@ try:
 except KeyboardInterrupt:
     t1.exitflag = 1
     t1.join()
-    GPIO.cleanup()
+    #GPIO.cleanup()
 #GPIO.cleanup()
