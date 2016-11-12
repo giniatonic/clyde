@@ -67,9 +67,9 @@ t1 = USThreads(1,trig1,echo1)
 try:
     #start thread
     t1.start()
-
+    t1.join()
 except KeyboardInterrupt:
     exitflag = 1
-    t1.join()
+    #t1.join()
     GPIO.cleanup()
 #GPIO.cleanup()
