@@ -20,4 +20,4 @@ except KeyboardInterrupt:
     t1.exitflag = 1
     t1.join()
     GPIO.cleanup()
-GPIO.cleanup()
+#GPIO.cleanup()
