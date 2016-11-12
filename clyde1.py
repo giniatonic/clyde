@@ -24,7 +24,7 @@ class USThreads(threading.Thread):
         self.stop_event = stop_event
 
     def run(self):
-        while not self.stop_event:
+        while not self.stop_event.is_set():
             dist = measure_average(self.trigpin,self.echopin)
             print('Distance: %.1f' % dist)
 

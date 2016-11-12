@@ -15,6 +15,10 @@ GPIO.setup(GPIO_ECHO, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
 GPIO.output(GPIO_TRIGGER, False)
 
+def thecallback(channel):
+    StopTime = time.time()
+
+
 def distance():
     # set Trigger to HIGH
     GPIO.output(GPIO_TRIGGER, True)
