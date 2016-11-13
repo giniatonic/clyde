@@ -9,23 +9,30 @@ TRIG0 = 23
 ECHO0 = 24
 TRIG1 = 12
 ECHO1 = 13
+#TRIG2 =
+#ECHO2 =
 
+#create distances list for keeping track of ultrasonic sensor data
 distances = []
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
 
-# Setup GPIO
+# Setup GPIO pins
 GPIO.setup(TRIG0,GPIO.OUT)
 GPIO.setup(TRIG1,GPIO.OUT)
+#GPIO.setup(TRIG2,GPIO.OUT)
 GPIO.setup(ECHO0,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.setup(ECHO1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
+#GPIO.setup(ECHO2,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(TRIG0,False)
 GPIO.output(TRIG1,False)
+#GPIO.output(TRIG2,False)
 
 
+#Thread Target function
 def us_run(threadID,name,trigger, echo, stop_event):
-    global distances
+    global distances #create global variable for distances
     while not stop_event.is_set():
         distances[threadID] = measure_average(trigger, echo)
         print('Distance' + name + ': %.1f' % distances[threadID])
@@ -60,18 +67,29 @@ def measure_average(trigpin,echopin):
     distance = distance / 3
     return distance
 
+#The way to stop a thread, taken from thread library
 thread_stop = threading.Event()
+#create list for the threads to make them easier to stop
 threads = []
 
+#add element to distances list
 distances.append(0)
+#create 0th thread
 threads.append(threading.Thread(target=us_run, args=(0,'thread 0',TRIG0, ECHO0, thread_stop)))
 
 distances.append(0)
+#create 1st thread
 threads.append(threading.Thread(target=us_run, args=(1,'thread 1',TRIG1, ECHO1, thread_stop)))
+
+
+#distances.append(0)
+##create 2nd thread
+#threads.append(threading.Thread(target=us_run, args=(2,'thread 2',TRIG2, ECHO2, thread_stop)))
 
 try:
     threads[0].start()
     threads[1].start()
+    #threads[2].start()
 
     while True:
         print('Stilling running!')
@@ -81,3 +99,4 @@ except KeyboardInterrupt:
     thread_stop.set()
     for thread in threads:
         thread.join()
+    GPIO.cleanup()
