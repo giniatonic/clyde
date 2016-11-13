@@ -7,8 +7,8 @@ import threading
 #Define pins
 TRIG0 = 23
 ECHO0 = 24
-TRIG1 = 14
-ECHO1 = 15
+TRIG1 = 12
+ECHO1 = 13
 
 distances = []
 
@@ -28,7 +28,7 @@ def us_run(threadID,trigger, echo, stop_event):
     global distances
     while not stop_event.is_set():
         distances[threadID] = measure_average(trigger, echo)
-        print('Distance: %.1f' % dist)
+        print('Distance: %.1f' % distances[threadID])
 
 
 def measure(trigpin,echopin):
