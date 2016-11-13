@@ -5,8 +5,12 @@ import threading
 
 #Globals
 #Define pins
-TRIG1 = 23
-ECHO1 = 24
+TRIG0 = 23
+ECHO0 = 24
+TRIG1 = 14
+ECHO1 = 15
+
+distances = []
 
 #GPIO Mode (BOARD / BCM)
 GPIO.setmode(GPIO.BCM)
@@ -16,10 +20,12 @@ GPIO.setup(TRIG1,GPIO.OUT)
 GPIO.setup(ECHO1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(TRIG1,False)
 
-def us_run(trigger, echo, stop_event):
+def us_run(threadID,trigger, echo, stop_event):
+    global distances
     while not stop_event.is_set():
-        dist = measure_average(trigger, echo)
+        distances[threadID] = measure_average(trigger, echo)
         print('Distance: %.1f' % dist)
+
 
 def measure(trigpin,echopin):
     # This function measures a distance
@@ -53,10 +59,15 @@ def measure_average(trigpin,echopin):
 thread_stop = threading.Event()
 threads = []
 
-threads.append(threading.Thread(target=us_run, args=(TRIG1, ECHO1, thread_stop)))
+distances.append(0)
+threads.append(threading.Thread(target=us_run, args=(0,TRIG0, ECHO0, thread_stop)))
+
+distances.append(0)
+threads.append(threading.Thread(target=us_run, args=(1,TRIG1, ECHO1, thread_stop)))
 
 try:
     threads[0].start()
+    threads[1].start()
 
     while True:
         print('Stilling running!')
