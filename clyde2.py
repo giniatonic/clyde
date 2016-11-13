@@ -16,9 +16,13 @@ distances = []
 GPIO.setmode(GPIO.BCM)
 
 # Setup GPIO
+GPIO.setup(TRIG0,GPIO.OUT)
 GPIO.setup(TRIG1,GPIO.OUT)
+GPIO.setup(ECHO0,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.setup(ECHO1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
+GPIO.output(TRIG0,False)
 GPIO.output(TRIG1,False)
+
 
 def us_run(threadID,trigger, echo, stop_event):
     global distances
