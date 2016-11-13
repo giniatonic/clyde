@@ -24,11 +24,11 @@ GPIO.output(TRIG0,False)
 GPIO.output(TRIG1,False)
 
 
-def us_run(threadID,trigger, echo, stop_event):
+def us_run(threadID,name,trigger, echo, stop_event):
     global distances
     while not stop_event.is_set():
         distances[threadID] = measure_average(trigger, echo)
-        print('Distance: %.1f' % distances[threadID])
+        print('Distance' + name + ': %.1f' % distances[threadID])
 
 
 def measure(trigpin,echopin):
@@ -64,10 +64,10 @@ thread_stop = threading.Event()
 threads = []
 
 distances.append(0)
-threads.append(threading.Thread(target=us_run, args=(0,TRIG0, ECHO0, thread_stop)))
+threads.append(threading.Thread(target=us_run, args=(0,'thread 0',TRIG0, ECHO0, thread_stop)))
 
 distances.append(0)
-threads.append(threading.Thread(target=us_run, args=(1,TRIG1, ECHO1, thread_stop)))
+threads.append(threading.Thread(target=us_run, args=(1,'thread 1',TRIG1, ECHO1, thread_stop)))
 
 try:
     threads[0].start()
