@@ -3,6 +3,8 @@
 # example of using this class.
 # Author: Tony DiCola
 # License: MIT License https://opensource.org/licenses/MIT
+#Last edited: Ginny Schilling, 10/27/2016
+
 import time
 import atexit
 import sys
