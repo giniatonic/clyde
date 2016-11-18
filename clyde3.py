@@ -9,6 +9,7 @@ import RPi.GPIO as GPIO
 import threading
 import Robot
 
+GPIO.setwarnings(False)
 #-------------------------------------------------------
 #DEFINE FUNCTIONS
 
@@ -119,6 +120,13 @@ if __name__ == '__main__':
             #lock.release()
 
     except KeyboardInterrupt:
+        thread_stop.set()
+        for thread in threads:
+            thread.join()
+        GPIO.cleanup()
+
+    except:
+        print('Dude whats my error?')
         thread_stop.set()
         for thread in threads:
             thread.join()
