@@ -195,13 +195,13 @@ class Adafruit_DCMotor:
     def run(self, command):
         if not self.MC:
             return
-        if (command == Adafruit_MotorHAT.FORWARD):
+        if (command == 'Adafruit_MotorHAT.FORWARD'):
             self.MC.setPin(self.IN2pin, 0)
             self.MC.setPin(self.IN1pin, 1)
-        if (command == Adafruit_MotorHAT.BACKWARD):
+        if (command == 'Adafruit_MotorHAT.BACKWARD'):
             self.MC.setPin(self.IN1pin, 0)
             self.MC.setPin(self.IN2pin, 1)
-        if (command == Adafruit_MotorHAT.RELEASE):
+        if (command == 'Adafruit_MotorHAT.RELEASE'):
             self.MC.setPin(self.IN1pin, 0)
             self.MC.setPin(self.IN2pin, 0)
     def setSpeed(self, speed):
