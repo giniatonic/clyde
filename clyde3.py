@@ -114,7 +114,7 @@ if __name__ == '__main__':
 
         while True:
             #lock.acquire()
-            print('distances: %.1f , %.1f' % distances[0], distances[1])
+            print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             time.sleep(1)
             #lock.release()
 
