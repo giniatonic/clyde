@@ -107,13 +107,13 @@ if __name__ == '__main__':
         threads[0].start()
         threads[1].start()
         #threads[2].start()
-        lock = threading.Lock()
+        #lock = threading.Lock()
 
         while True:
-            lock.acquire()
+            #lock.acquire()
             print('distances: %.1f , %.1f' % distances[0] % distances[1])
             time.sleep(1)
-            lock.release()
+            #lock.release()
 
     except KeyboardInterrupt:
         thread_stop.set()
