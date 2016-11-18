@@ -10,7 +10,7 @@ import atexit
 import sys
 #sys.path.append('./libraries')
 
-import Adafruit_MotorHAT as Adafruit_MotorHAT
+import Adafruit_MotorHAT.Adafruit_MotorHAT as Adafruit_MotorHAT
 
 
 class Robot(object):
