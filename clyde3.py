@@ -1,6 +1,6 @@
 #Clyde robot
-#Author: Ginny Schilling
-#Last Edited: Ginny Schilling, 11/13/2016
+#Author: Ginny Schilling, 11/13/2016
+#Last Edited: Ginny Schilling, 11/17/2016
 #-----------------------------
 
 #Libraries
@@ -100,7 +100,7 @@ threads.append(threading.Thread(target=us_run, args=(1,'thread 1',TRIG1, ECHO1, 
 LEFT_TRIM = 0
 RIGHT_TRIM = 0
 
-clyde = Robot.Robot(left_id = 1, right_id = 2, left_trim = LEFT_TRIM, right_trim = RIGHT_TRIM)
+clyde = Robot.Robot(left_trim = LEFT_TRIM, right_trim = RIGHT_TRIM)
 
 #-------------------------------------------------------
 #MAIN CODE
