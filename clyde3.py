@@ -9,6 +9,49 @@ import RPi.GPIO as GPIO
 import threading
 import Robot
 
+#-------------------------------------------------------
+#DEFINE FUNCTIONS
+
+#Thread Target function
+def us_run(threadID,name,trigger, echo, stop_event):
+    global distances #create global variable for distances
+    while not stop_event.is_set():
+        distances[threadID] = measure_average(trigger, echo)
+        print('Distance' + name + ': %.1f' % distances[threadID])
+
+
+def measure(trigpin,echopin):
+    # This function measures a distance
+    GPIO.output(trigpin, True)
+    time.sleep(0.00001)
+    GPIO.output(trigpin, False)
+    start = time.time()
+
+    while GPIO.input(echopin)==0:
+        start = time.time()
+
+    while GPIO.input(echopin)==1:
+        stop = time.time()
+
+    elapsed = stop-start
+    distance = (elapsed * 34300)/2
+    return distance
+
+def measure_average(trigpin,echopin):
+    # This function takes 3 measurements and
+    # returns the average.
+    distance1=measure(trigpin,echopin)
+    time.sleep(0.1)
+    distance2=measure(trigpin,echopin)
+    time.sleep(0.1)
+    distance3=measure(trigpin,echopin)
+    distance = distance1 + distance2 + distance3
+    distance = distance / 3
+    return distance
+
+#----------------------------------------------------------
+#SETUP
+
 #Constants
 TRIG0 = 23
 ECHO0 = 24
@@ -58,46 +101,6 @@ LEFT_TRIM = 0
 RIGHT_TRIM = 0
 
 clyde = Robot.Robot(left_id = 1, right_id = 2, left_trim = LEFT_TRIM, right_trim = RIGHT_TRIM)
-
-#-------------------------------------------------------
-#DEFINE FUNCTIONS
-
-#Thread Target function
-def us_run(threadID,name,trigger, echo, stop_event):
-    global distances #create global variable for distances
-    while not stop_event.is_set():
-        distances[threadID] = measure_average(trigger, echo)
-        print('Distance' + name + ': %.1f' % distances[threadID])
-
-
-def measure(trigpin,echopin):
-    # This function measures a distance
-    GPIO.output(trigpin, True)
-    time.sleep(0.00001)
-    GPIO.output(trigpin, False)
-    start = time.time()
-
-    while GPIO.input(echopin)==0:
-        start = time.time()
-
-    while GPIO.input(echopin)==1:
-        stop = time.time()
-
-    elapsed = stop-start
-    distance = (elapsed * 34300)/2
-    return distance
-
-def measure_average(trigpin,echopin):
-    # This function takes 3 measurements and
-    # returns the average.
-    distance1=measure(trigpin,echopin)
-    time.sleep(0.1)
-    distance2=measure(trigpin,echopin)
-    time.sleep(0.1)
-    distance3=measure(trigpin,echopin)
-    distance = distance1 + distance2 + distance3
-    distance = distance / 3
-    return distance
 
 #-------------------------------------------------------
 #MAIN CODE
