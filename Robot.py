@@ -10,7 +10,7 @@ import atexit
 import sys
 #sys.path.append('./libraries')
 
-import Adafruit_MotorHAT.Adafruit_MotorHAT as Adafruit_MotorHAT
+import Adafruit_MotorHAT # as Adafruit_MotorHAT
 
 
 class Robot(object):
@@ -30,7 +30,7 @@ class Robot(object):
                 value to prevent damage to the bot on program crash!).
         """
         # Initialize motor HAT and left, right motor.
-        self._mh = Adafruit_MotorHAT(addr)
+        self._mh = Adafruit_MotorHAT.Adafruit_MotorHAT(addr)
         self._left = self._mh.getMotor(left_id)
         self._right = self._mh.getMotor(right_id)
         self._left_trim = left_trim
