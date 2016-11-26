@@ -147,6 +147,7 @@ if __name__ == '__main__':
 
     except Exception as e:
         print('Dude whats my error?')
+        print(e.message)
         thread_stop.set()
         for thread in threads:
             thread.join()
