@@ -119,26 +119,23 @@ if __name__ == '__main__':
             #lock.acquire()
 
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
-            if(distances[0] > 25):
-                clyde.forward(80)
-                print('still going...')
-                stopped = 0
-            elif(stopped == 0 and (distances[0] < 25 or distances[1] < 15 or distances[2] < 15)):
-                clyde.stop()
-                print('STOP!')
-                stopped = 1
-                while distances[0] < 25:
-                    if(distances[1]> distances[2]):
+            if stopped == 0:
+                if (distances[0] < 25 or distances[1]<15 or distances[2] < 15):
+                    clyde.stop()
+                    stopped = 1
+                elif(distances[0]>25 and distances[1]>15 and distances[2]>15):
+                    clyde.forward(80)
+                    stopped = 0
+            elif stopped == 1:
+                while distances[0]<25:
+                    if (distances[1]>distances[2]):
                         clyde.right(100,1)
                     else:
                         clyde.left(100,1)
-            else:
-                print('Already Stopped')
-                if(distances[1] > distances[2]):
-                    clyde.right(100,1)
-                else:
-                    clyde.left(100,1)
-            time.sleep(.5)
+                if (distances[0]>25 and distances[1]>15 and distances[2]>15):
+                    clyde.forward(80)
+                    stopped = 0
+            time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
 
