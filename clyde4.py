@@ -112,7 +112,7 @@ if __name__ == '__main__':
         threads[1].start()
         #threads[2].start()
         #lock = threading.Lock()
-
+        time.sleep(1)
         while True:
             #lock.acquire()
 
