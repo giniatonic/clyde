@@ -117,7 +117,7 @@ if __name__ == '__main__':
             #lock.acquire()
 
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
-            if(distances[0] > 20) then:
+            if(distances[0] > 20):
                 clyde.forward(100)
             else:
                 clyde.stop()
