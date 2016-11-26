@@ -120,10 +120,13 @@ if __name__ == '__main__':
             if(distances[0] > 25):
                 clyde.forward(80)
                 print('still going...')
-            else:
+                stopped = 0
+            elif(distances[0] < 25 && stopped == 0):
                 clyde.stop()
                 print('STOP!')
-                return
+                stopped = 1
+            else:
+                print('Already Stopped')
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
