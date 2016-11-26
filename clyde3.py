@@ -32,7 +32,8 @@ def measure(trigpin,echopin):
 
 
     while GPIO.input(echopin)==0:
-        start = time.time()
+        #start = time.time()
+        "blah"
 
     stop = time.time()
 
