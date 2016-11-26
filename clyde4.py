@@ -123,6 +123,7 @@ if __name__ == '__main__':
             else:
                 clyde.stop()
                 print('STOP!')
+                return
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
