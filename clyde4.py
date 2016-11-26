@@ -129,7 +129,7 @@ if __name__ == '__main__':
                 stopped = 1
             else:
                 print('Already Stopped')
-            time.sleep(.1)
+            time.sleep(.5)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
 
