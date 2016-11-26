@@ -30,13 +30,13 @@ def measure(trigpin,echopin):
 
     GPIO.wait_for_edge(echopin, GPIO.RISING)
     stop = time.time()
-"""
-    while GPIO.input(echopin)==0:
-        start = time.time()
 
-    while GPIO.input(echopin)==1:
-        stop = time.time()
-"""
+    #while GPIO.input(echopin)==0:
+        #start = time.time()
+
+    #while GPIO.input(echopin)==1:
+        #stop = time.time()
+
     elapsed = stop-start
     distance = (elapsed * 34300)/2
     return distance
