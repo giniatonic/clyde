@@ -70,13 +70,13 @@ GPIO.setmode(GPIO.BCM)
 # SETUP GPIO pins
 GPIO.setup(TRIG0,GPIO.OUT)
 GPIO.setup(TRIG1,GPIO.OUT)
-#GPIO.setup(TRIG2,GPIO.OUT)
+GPIO.setup(TRIG2,GPIO.OUT)
 GPIO.setup(ECHO0,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.setup(ECHO1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
-#GPIO.setup(ECHO2,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
+GPIO.setup(ECHO2,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(TRIG0,False)
 GPIO.output(TRIG1,False)
-#GPIO.output(TRIG2,False)
+GPIO.output(TRIG2,False)
 
 #SETUP threads
 #The way to stop a thread, taken from thread library
@@ -93,9 +93,9 @@ distances.append(0)
 #create 1st thread
 threads.append(threading.Thread(target=us_run, args=(1,'thread 1',TRIG1, ECHO1, thread_stop)))
 
-#distances.append(0)
-##create 2nd thread
-#threads.append(threading.Thread(target=us_run, args=(2,'thread 2',TRIG2, ECHO2, thread_stop)))
+distances.append(0)
+#create 2nd thread
+threads.append(threading.Thread(target=us_run, args=(2,'thread 2',TRIG2, ECHO2, thread_stop)))
 
 #SETUP motors
 LEFT_TRIM = 0
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     try:
         threads[0].start()
         threads[1].start()
-        #threads[2].start()
+        threads[2].start()
         #lock = threading.Lock()
         time.sleep(1)
         while True:
