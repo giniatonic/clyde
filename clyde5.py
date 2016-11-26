@@ -127,10 +127,11 @@ if __name__ == '__main__':
                 clyde.stop()
                 print('STOP!')
                 stopped = 1
-                if(distances[1]> distances[2]):
-                    clyde.right(100,1)
-                else:
-                    clyde.left(100,1)
+                while distances[0] < 25:
+                    if(distances[1]> distances[2]):
+                        clyde.right(100,1)
+                    else:
+                        clyde.left(100,1)
             else:
                 print('Already Stopped')
                 if(distances[1]> distances[2]):
