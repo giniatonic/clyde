@@ -121,6 +121,8 @@ if __name__ == '__main__':
                 clyde.forward(100)
             else:
                 clyde.stop()
+            time.sleep(.1)
+            print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
 
     except KeyboardInterrupt:
