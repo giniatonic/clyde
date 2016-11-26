@@ -119,10 +119,12 @@ if __name__ == '__main__':
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             if(distances[0] > 20):
                 clyde.forward(100)
+                print('still going...')
             else:
                 clyde.stop()
+                print('STOP!')
             time.sleep(.1)
-            print('distances: %.1f , %.1f' % (distances[0], distances[1]))
+            #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
 
     except KeyboardInterrupt:
