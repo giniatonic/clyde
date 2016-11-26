@@ -58,8 +58,8 @@ TRIG0 = 23
 ECHO0 = 24
 TRIG1 = 12
 ECHO1 = 13
-#TRIG2 =
-#ECHO2 =
+TRIG2 = 27
+ECHO2 = 22
 
 #create distances list for keeping track of ultrasonic sensor data
 distances = []

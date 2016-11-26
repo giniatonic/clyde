@@ -58,8 +58,8 @@ TRIG0 = 23
 ECHO0 = 24
 TRIG1 = 12
 ECHO1 = 13
-#TRIG2 =
-#ECHO2 =
+TRIG2 = 27
+ECHO2 = 22
 
 #create distances list for keeping track of ultrasonic sensor data
 distances = []
@@ -93,9 +93,9 @@ distances.append(0)
 #create 1st thread
 threads.append(threading.Thread(target=us_run, args=(1,'thread 1',TRIG1, ECHO1, thread_stop)))
 
-#distances.append(0)
-##create 2nd thread
-#threads.append(threading.Thread(target=us_run, args=(2,'thread 2',TRIG2, ECHO2, thread_stop)))
+distances.append(0)
+#create 2nd thread
+threads.append(threading.Thread(target=us_run, args=(2,'thread 2',TRIG2, ECHO2, thread_stop)))
 
 #SETUP motors
 LEFT_TRIM = 0
@@ -110,12 +110,12 @@ if __name__ == '__main__':
     try:
         threads[0].start()
         threads[1].start()
-        #threads[2].start()
+        threads[2].start()
         #lock = threading.Lock()
 
         while True:
             #lock.acquire()
-            print('distances: %.1f , %.1f' % (distances[0], distances[1]))
+            print('distances: %.1f , %.1f, %.1f' % (distances[0], distances[1], distances[2]))
             time.sleep(1)
             #lock.release()
 
