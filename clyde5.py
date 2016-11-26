@@ -145,7 +145,7 @@ if __name__ == '__main__':
             thread.join()
         GPIO.cleanup()
 
-    except:
+    except Exception as e:
         print('Dude whats my error?')
         thread_stop.set()
         for thread in threads:
