@@ -123,7 +123,7 @@ if __name__ == '__main__':
                 clyde.forward(80)
                 print('still going...')
                 stopped = 0
-            elif(stopped == 0 and (distances[0] < 25 or distances[1] < 15 or distances[2] < 15)):
+            elif(stopped == 0 and (distances[0] < 25 or distances[1] < 15 or distances[2] < 15):
                 clyde.stop()
                 print('STOP!')
                 stopped = 1
@@ -134,7 +134,7 @@ if __name__ == '__main__':
                         clyde.left(100,1)
             else:
                 print('Already Stopped')
-                if(distances[1]> distances[2]):
+                if(distances[1] > distances[2]):
                     clyde.right(100,1)
                 else:
                     clyde.left(100,1)
