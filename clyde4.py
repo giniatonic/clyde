@@ -117,9 +117,10 @@ if __name__ == '__main__':
             #lock.acquire()
 
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
-            while distances[0] > 20:
+            if(distances[0] > 20) then:
                 clyde.forward(100)
-            clyde.stop()
+            else:
+                clyde.stop()
             #lock.release()
 
     except KeyboardInterrupt:
