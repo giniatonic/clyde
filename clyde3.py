@@ -70,13 +70,13 @@ GPIO.setmode(GPIO.BCM)
 # SETUP GPIO pins
 GPIO.setup(TRIG0,GPIO.OUT)
 GPIO.setup(TRIG1,GPIO.OUT)
-#GPIO.setup(TRIG2,GPIO.OUT)
+GPIO.setup(TRIG2,GPIO.OUT)
 GPIO.setup(ECHO0,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.setup(ECHO1,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
-#GPIO.setup(ECHO2,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
+GPIO.setup(ECHO2,GPIO.IN,pull_up_down = GPIO.PUD_DOWN)
 GPIO.output(TRIG0,False)
 GPIO.output(TRIG1,False)
-#GPIO.output(TRIG2,False)
+GPIO.output(TRIG2,False)
 
 #SETUP threads
 #The way to stop a thread, taken from thread library
