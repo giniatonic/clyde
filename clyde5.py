@@ -18,6 +18,7 @@ def us_run(threadID,name,trigger, echo, stop_event):
     global distances #create global variable for distances
     while not stop_event.is_set():
         distances[threadID] = measure_average(trigger, echo)
+        time.sleep(0.1)
         print('Distance' + name + ': %.1f' % distances[threadID])
 
 
