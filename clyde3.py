@@ -28,14 +28,13 @@ def measure(trigpin,echopin):
     GPIO.output(trigpin, False)
     start = time.time()
 
-    #GPIO.wait_for_edge(echopin, GPIO.RISING)
-
-
-    while GPIO.input(echopin)==0:
-        #start = time.time()
-        "blah"
-
+    GPIO.wait_for_edge(echopin, GPIO.FALLING)
     stop = time.time()
+
+    #while GPIO.input(echopin)==0:
+        #start = time.time()
+
+    #stop = time.time()
 
     #while GPIO.input(echopin)==1:
         #stop = time.time()
