@@ -30,11 +30,11 @@ def measure(trigpin,echopin):
 
     while GPIO.input(echopin)==0:
         start = time.time()
-        print(hex(id(start)))
+        #print(hex(id(start)))
 
     while GPIO.input(echopin)==1:
         stop = time.time()
-        print(hex(id(stop)))
+        #print(hex(id(stop)))
 
     elapsed = stop-start
     distance = (elapsed * 34300)/2
