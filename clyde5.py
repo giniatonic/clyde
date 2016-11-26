@@ -122,10 +122,10 @@ if __name__ == '__main__':
 
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             if stopped == 0:
-                if (distances[0] < 25 or distances[1]<15 or distances[2] < 15):
+                if (distances[0] < 25 or distances[1]<25 or distances[2] < 25):
                     clyde.stop()
                     stopped = 1
-                elif(distances[0]>25 and distances[1]>15 and distances[2]>15):
+                elif(distances[0]>25 and distances[1]>25 and distances[2]>25):
                     clyde.forward(80)
                     stopped = 0
             elif stopped == 1:
@@ -134,7 +134,7 @@ if __name__ == '__main__':
                         clyde.right(100,1)
                     else:
                         clyde.left(100,1)
-                if (distances[0]>25 and distances[1]>15 and distances[2]>15):
+                if (distances[0]>25 and distances[1]>25 and distances[2]>25):
                     clyde.forward(80)
                     stopped = 0
             time.sleep(.1)
