@@ -129,7 +129,7 @@ if __name__ == '__main__':
                     clyde.forward(80)
                     stopped = 0
             elif stopped == 1:
-                while distances[0]<25 and (distances[1]<20 or distances[2]<20):
+                while (distances[0]<25 and (distances[1]>20 or distances[2]>20)) or (distances[0]>25 and (distances[1]<20 or distances[2]<20)):
                     if (distances[1]>distances[2]):
                         clyde.right(100,1)
                     else:
