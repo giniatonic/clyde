@@ -1,6 +1,6 @@
 #Clyde robot
 #Author: Ginny Schilling, 11/13/2016
-#Last Edited: Ginny Schilling, 11/17/2016
+#Last Edited: Ginny Schilling, 11/28/2016
 #-----------------------------
 
 #Libraries
@@ -121,21 +121,28 @@ if __name__ == '__main__':
             #lock.acquire()
 
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
-            if stopped == 0:
+            if stopped == 0: #if Clyde is moving,
+                #if there is something in Clyde's bubble
                 if (distances[0] < 25 or distances[1]<20 or distances[2] < 20):
-                    clyde.stop()
-                    stopped = 1
+                    clyde.stop() #No Clyde! Stop!!
+                    stopped = 1 #Clyde is now stopped
+                #Else if Clyde's personal bubble is not impinged
                 elif(distances[0]>25 and distances[1]>20 and distances[2]>20):
-                    clyde.forward(80)
-                    stopped = 0
-            elif stopped == 1:
+                    clyde.forward(70) #Go Clyde, Go!!
+                    stopped = 0 #Clyde is now moving
+            elif stopped == 1: #if Clyde is stopped,
+                #If Clyde has something blocking his view, but a free path to the side, or if he has a free path straight ahead, but something right to the side
                 while (distances[0]<25 and (distances[1]>20 or distances[2]>20)) or (distances[0]>25 and (distances[1]<20 or distances[2]<20)):
-                    if (distances[1]>distances[2]):
+                    if (distances[1]>distances[2]) and (abs(distances[1]-distances[2])<20):
+                        clyde.right(100,4)
+                    elif(distances[1]>distances[2]):
                         clyde.right(100,1)
-                    else:
+                    elif(distances[2]>distances[1]) and (abs(distances[1]-distances[2]<20)):
+                        clyde.left(100,4)
+                    elif(distances[2]>distances[1])
                         clyde.left(100,1)
                 if (distances[0]>25 and distances[1]>20 and distances[2]>20):
-                    clyde.forward(80)
+                    clyde.forward(70)
                     stopped = 0
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
