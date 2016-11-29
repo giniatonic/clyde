@@ -139,7 +139,7 @@ if __name__ == '__main__':
                         clyde.right(100,1)
                     elif(distances[2]>distances[1]) and (abs(distances[1]-distances[2]<20)):
                         clyde.left(100,4)
-                    elif(distances[2]>distances[1])
+                    elif(distances[2]>distances[1]):
                         clyde.left(100,1)
                 if (distances[0]>25 and distances[1]>20 and distances[2]>20):
                     clyde.forward(70)
