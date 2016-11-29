@@ -134,11 +134,11 @@ if __name__ == '__main__':
                 #If Clyde has something blocking his view, but a free path to the side, or if he has a free path straight ahead, but something right to the side
                 while (distances[0]<25 and (distances[1]>20 or distances[2]>20)) or (distances[0]>25 and (distances[1]<20 or distances[2]<20)):
                     if (distances[1]>distances[2]) and (abs(distances[1]-distances[2])<20):
-                        clyde.right(100,4)
+                        clyde.right(100,6)
                     elif(distances[1]>distances[2]):
                         clyde.right(100,1)
                     elif(distances[2]>distances[1]) and (abs(distances[1]-distances[2]<20)):
-                        clyde.left(100,4)
+                        clyde.left(100,6)
                     elif(distances[2]>distances[1]):
                         clyde.left(100,1)
                 if (distances[0]>25 and distances[1]>20 and distances[2]>20):
