@@ -126,24 +126,31 @@ if __name__ == '__main__':
                 if (distances[0] < 25 or distances[1]<20 or distances[2] < 20):
                     clyde.stop() #No Clyde! Stop!!
                     stopped = 1 #Clyde is now stopped
+                    print('Gotta Stop!')
                 #Else if Clyde's personal bubble is not impinged
                 elif(distances[0]>25 and distances[1]>20 and distances[2]>20):
                     clyde.forward(70) #Go Clyde, Go!!
                     stopped = 0 #Clyde is now moving
+                    print('Just keep moving...')
             elif stopped == 1: #if Clyde is stopped,
                 #If Clyde has something blocking his view, but a free path to the side, or if he has a free path straight ahead, but something right to the side
                 while (distances[0]<25 and (distances[1]>20 or distances[2]>20)) or (distances[0]>25 and (distances[1]<20 or distances[2]<20)):
                     if (distances[1]>distances[2]) and (abs(distances[1]-distances[2])<20):
                         clyde.right(100,6)
+                        print('cornering right')
                     elif(distances[1]>distances[2]):
                         clyde.right(100,1)
+                        print('turnin right')
                     elif(distances[2]>distances[1]) and (abs(distances[1]-distances[2]<20)):
                         clyde.left(100,6)
+                        print('cornering left')
                     elif(distances[2]>distances[1]):
                         clyde.left(100,1)
+                        print('turnin left')
                 if (distances[0]>25 and distances[1]>20 and distances[2]>20):
                     clyde.forward(70)
                     stopped = 0
+                    print('Lets GO!')
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
