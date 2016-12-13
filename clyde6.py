@@ -124,41 +124,56 @@ if __name__ == '__main__':
             dL = distances[2]
 
             if stopped == 0:
+            print('case1')
                 if(dF > 35 and dR < 35 and dL < 35):
                 #In a corridor
+                print('case2')
                     if(abs(dL-dR) > 5):
+                    print('case3')
                         if(dL > dR):
+                        print('case4')
                             clyde.left(100,1)
                         else:
+                        print('case5')
                             clyde.right(100,1)
                     clyde.forward(50) #go forward
                     stopped = 0
                 elif(dF < 35):
+                print('case6')
                     clyde.stop()
                     stopped = 1
 
             if stopped == 1:
+            print('case7')
                 if(dR<35 and dL>35):
+                print('case8')
                 #In a Left handed L-bracket
                     clyde.left(50)
                 elif(dR>35 and dL<35):
+                print('case9')
                 #In a Right handed L-bracket
                     clyde.right(50)
                 elif(dR>35 and dL>35):
+                print('case10')
                 #In a T-Junction
                     if(dR>dL):
+                    print('case11')
                         clyde.right(50)
                     elif(dR<dL):
+                    print('case12')
                         clyde.left(50)
                 elif(dR<35 and dL<35):
+                print('case13')
                 #Cornered!
                     clyde.backward(30,2)
                     clyde.left(100,10)
                 elif(dF>35 and dR<35 and dL<35):
+                print('case14')
                 #back in a corridor
                     clyde.forward(50)
                     stopped = 0
                 elif(dF>35 and dR>35 and dL>35):
+                print('case15')
                 #In open space
                     clyde.forward(50)
                     stopped = 0
