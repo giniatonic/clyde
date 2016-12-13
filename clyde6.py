@@ -154,7 +154,7 @@ if __name__ == '__main__':
                 #Cornered!
                     clyde.backward(30,2)
                     clyde.left(100,10)
-                elif(dF>40 and dR<35 and dL<35)
+                elif(dF>40 and dR<35 and dL<35):
                     clyde.forward(50)
                     stopped = 0
 
