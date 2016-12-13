@@ -123,7 +123,7 @@ if __name__ == '__main__':
             dR = distances[1]
             dL = distances[2]
 
-            if stopped == 0
+            if stopped == 0:
                 if(dF > 40 and dR < 35 and dL < 35):
                 #In a corridor
                     if(abs(dL-dR) > 5):
@@ -137,7 +137,7 @@ if __name__ == '__main__':
                     clyde.stop()
                     stopped = 1
 
-            if stopped == 1
+            if stopped == 1:
                 if(dR<35 and dL>35):
                 #In a Left handed L-bracket
                     clyde.left(50)
