@@ -1,7 +1,7 @@
 #Clyde robot
 #Author: Ginny Schilling, 11/13/2016
-#Last Edited: Ginny Schilling, 11/29/2016
-#-----------------------------
+#Last Edited: Ginny Schilling, 12/12/2016
+#-------------------------------------------------------
 
 #Libraries
 import time
@@ -119,38 +119,37 @@ if __name__ == '__main__':
         stopped = 0
         while True:
             #lock.acquire()
+            dF = distances[0]
+            dR = distances[1]
+            dL = distances[2]
 
-            #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
-            if stopped == 0: #if Clyde is moving,
-                #if there is something in Clyde's bubble
-                if (distances[0] < 25 or distances[1]<20 or distances[2] < 20):
-                    clyde.stop() #No Clyde! Stop!!
-                    stopped = 1 #Clyde is now stopped
-                    print('Gotta Stop!')
-                #Else if Clyde's personal bubble is not impinged
-                elif(distances[0]>25 and distances[1]>20 and distances[2]>20):
-                    clyde.forward(50) #Go Clyde, Go!!
-                    stopped = 0 #Clyde is now moving
-                    print('Just keep moving...')
-            elif stopped == 1: #if Clyde is stopped,
-                #If Clyde has something blocking his view, but a free path to the side, or if he has a free path straight ahead, but something right to the side
-                while (distances[0]<25 and (distances[1]>20 or distances[2]>20)) or (distances[0]>25 and (distances[1]<20 or distances[2]<20)):
-                    if (distances[1]>distances[2]) and (abs(distances[1]-distances[2])<20):
-                        clyde.right(130,5)
-                        print('cornering right')
-                    elif(distances[1]>distances[2]):
-                        clyde.right(100,1)
-                        print('turnin right')
-                    elif(distances[2]>distances[1]) and (abs(distances[1]-distances[2]<20)):
-                        clyde.left(130,5)
-                        print('cornering left')
-                    elif(distances[2]>distances[1]):
-                        clyde.left(100,1)
-                        print('turnin left')
-                if (distances[0]>25 and distances[1]>20 and distances[2]>20):
-                    clyde.forward(50)
+            if stopped == 0
+                if(dF > 40 and dR < 35 and dL < 35):
+                #In a corridor
+                    clyde.forward(50) #go forward
                     stopped = 0
-                    print('Lets GO!')
+                elif(dF < 40):
+                    clyde.stop()
+                    stopped = 1
+
+            if stopped == 1
+                if(dR<35 and dL>35):
+                #In a Left handed L-bracket
+                    clyde.left(50)
+                elif(dR>35 and dL<35):
+                #In a Right handed L-bracket
+                    clyde.right(50)
+                elif(dR>40 and dL>40):
+                #In a T-Junction
+                    if(dR>dL):
+                        clyde.right(50)
+                    elif(dR<dL):
+                        clyde.left(50)
+                elif(dR<35 and dL<35):
+                #Cornered!
+                    clyde.reverse()
+                    clyde.left(50)
+
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
             #lock.release()
