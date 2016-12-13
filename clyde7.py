@@ -1,6 +1,6 @@
 #Clyde robot
 #Author: Ginny Schilling, 11/13/2016
-#Last Edited: Ginny Schilling, 12/12/2016
+#Last Edited: Ginny Schilling, 12/13/2016
 #-------------------------------------------------------
 
 #Libraries
@@ -125,21 +125,21 @@ if __name__ == '__main__':
 
             print('%f, %f, %f' % (dF, dR, dL))
 
-            if(dF<25 and dR<25 and dL<25):
+            if(dF<15 and dR<15 and dL<15):
                 #Cornered?
                 print('case1')
                 clyde.stop()
                 clyde.backward(30,2)
                 clyde.left(100,10) #turn around
-            elif(dF<25 and dR<25 and dL>25):
+            elif(dF<15 and dR<15 and dL>15):
                 print('case2')
                 clyde.stop()
                 clyde.left(100,2)
-            elif(dF<25 and dR>25 and dL<25):
+            elif(dF<15 and dR>15 and dL<15):
                 print('case3')
                 clyde.stop()
                 clyde.right(100,2)
-            elif(dF<25 and dR>25 and dL>25):
+            elif(dF<15 and dR>15 and dL>15):
                 print('case4')
                 if(dR>dL):
                     print('case5')
@@ -147,18 +147,18 @@ if __name__ == '__main__':
                 else:
                     print('case6')
                     clyde.left(100,3)
-            elif(dF>25 and dR<25 and dL<25):
+            elif(dF>15 and dR<15 and dL<15):
                 print('case7')
                 clyde.forward(50)
-            elif(dF>25 and dR<25 and dL>25):
+            elif(dF>15 and dR<15 and dL>15):
                 print('case8')
                 clyde.stop()
                 clyde.left(100,2)
-            elif(dF>25 and dR>25 and dL<25):
+            elif(dF>15 and dR>15 and dL<15):
                 print('case9')
                 clyde.stop()
                 clyde.right(100,2)
-            elif(dF>25 and dR>25 and dL>25):
+            elif(dF>15 and dR>15 and dL>15):
                 print('case10')
                 clyde.forward(50)
 
