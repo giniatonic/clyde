@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
             if stopped == 0:
                 print('case1')
-                if(dF > 35 and dR < 35 and dL < 35):
+                if(dF > 25 and dR < 25 and dL < 25):
                 #In a corridor
                     print('case2')
                     if(abs(dL-dR) > 5):
@@ -138,7 +138,7 @@ if __name__ == '__main__':
                             clyde.right(100,1)
                     clyde.forward(50) #go forward
                     stopped = 0
-                elif(dF < 35):
+                elif(dF < 25):
                 #Obstacle in front
                     print('case6')
                     clyde.stop()
@@ -146,15 +146,15 @@ if __name__ == '__main__':
 
             if stopped == 1:
                 print('case7')
-                if(dF<35 and dR<35 and dL>35):
+                if(dF<25 and dR<25 and dL>25):
                     print('case8')
                 #In a Left handed L-bracket
                     clyde.left(100,5.5)
-                elif(dF<35 and dR>35 and dL<35):
+                elif(dF<25 and dR>25 and dL<25):
                     print('case9')
                 #In a Right handed L-bracket
                     clyde.right(100,5.5)
-                elif(dF<35 and dR>35 and dL>35):
+                elif(dF<25 and dR>25 and dL>25):
                     print('case10')
                 #In a T-Junction
                     if(dR>dL):
@@ -163,22 +163,21 @@ if __name__ == '__main__':
                     elif(dR<dL):
                         print('case12')
                         clyde.left(100,5.5)
-                elif(dF<35 and dR<35 and dL<35):
+                elif(dF<25 and dR<25 and dL<25):
                     print('case13')
                 #Cornered!
                     clyde.backward(30,2)
                     clyde.left(100,10)
-                elif(dF>35 and dR<30 and dL<30):
+                elif(dF>25 and dR<20 and dL<20):
                     print('case14')
                 #back in a corridor
                     clyde.forward(50)
                     stopped = 0
-                elif(dF>35 and dR>25 and dL>25):
+                elif(dF>25 and dR>20 and dL>20):
                     print('case15')
                 #In open space
                     clyde.forward(50)
                     stopped = 0
-
 
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
