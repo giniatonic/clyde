@@ -139,6 +139,7 @@ if __name__ == '__main__':
                     clyde.forward(50) #go forward
                     stopped = 0
                 elif(dF < 35):
+                #Obstacle in front
                     print('case6')
                     clyde.stop()
                     stopped = 1
@@ -148,20 +149,20 @@ if __name__ == '__main__':
                 if(dF<35 and dR<35 and dL>35):
                     print('case8')
                 #In a Left handed L-bracket
-                    clyde.left(50)
+                    clyde.left(100,5.5)
                 elif(dF<35 and dR>35 and dL<35):
                     print('case9')
                 #In a Right handed L-bracket
-                    clyde.right(50)
+                    clyde.right(100,5.5)
                 elif(dF<35 and dR>35 and dL>35):
                     print('case10')
                 #In a T-Junction
                     if(dR>dL):
                         print('case11')
-                        clyde.right(50)
+                        clyde.right(100,5.5)
                     elif(dR<dL):
                         print('case12')
-                        clyde.left(50)
+                        clyde.left(100,5.5)
                 elif(dF<35 and dR<35 and dL<35):
                     print('case13')
                 #Cornered!
