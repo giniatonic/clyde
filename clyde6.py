@@ -155,8 +155,14 @@ if __name__ == '__main__':
                     clyde.backward(30,2)
                     clyde.left(100,10)
                 elif(dF>40 and dR<35 and dL<35):
+                #back in a corridor
                     clyde.forward(50)
                     stopped = 0
+                elif(dF>40 and dR>35 and dL>35):
+                #In open space
+                    clyde.forward(50)
+                    stopped = 0
+
 
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
