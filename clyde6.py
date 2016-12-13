@@ -145,15 +145,15 @@ if __name__ == '__main__':
 
             if stopped == 1:
                 print('case7')
-                if(dR<35 and dL>35):
+                if(dF<35 and dR<35 and dL>35):
                     print('case8')
                 #In a Left handed L-bracket
                     clyde.left(50)
-                elif(dR>35 and dL<35):
+                elif(dF<35 and dR>35 and dL<35):
                     print('case9')
                 #In a Right handed L-bracket
                     clyde.right(50)
-                elif(dR>35 and dL>35):
+                elif(dF<35 and dR>35 and dL>35):
                     print('case10')
                 #In a T-Junction
                     if(dR>dL):
@@ -162,7 +162,7 @@ if __name__ == '__main__':
                     elif(dR<dL):
                         print('case12')
                         clyde.left(50)
-                elif(dR<35 and dL<35):
+                elif(dF<35 and dR<35 and dL<35):
                     print('case13')
                 #Cornered!
                     clyde.backward(30,2)
