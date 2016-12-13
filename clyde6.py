@@ -186,6 +186,7 @@ if __name__ == '__main__':
                     clyde.forward(50)
                     stopped = 0
                 else:
+                    print('case17')
                     clyde.right(100,2)
 
             time.sleep(.1)
