@@ -168,12 +168,12 @@ if __name__ == '__main__':
                 #Cornered!
                     clyde.backward(30,2)
                     clyde.left(100,10)
-                elif(dF>35 and dR<35 and dL<35):
+                elif(dF>35 and dR<30 and dL<30):
                     print('case14')
                 #back in a corridor
                     clyde.forward(50)
                     stopped = 0
-                elif(dF>35 and dR>35 and dL>35):
+                elif(dF>35 and dR>25 and dL>25):
                     print('case15')
                 #In open space
                     clyde.forward(50)
