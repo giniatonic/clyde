@@ -124,7 +124,7 @@ if __name__ == '__main__':
             dL = distances[2]
 
             if stopped == 0:
-                if(dF > 40 and dR < 35 and dL < 35):
+                if(dF > 35 and dR < 35 and dL < 35):
                 #In a corridor
                     if(abs(dL-dR) > 5):
                         if(dL > dR):
@@ -133,7 +133,7 @@ if __name__ == '__main__':
                             clyde.right(100,1)
                     clyde.forward(50) #go forward
                     stopped = 0
-                elif(dF < 40):
+                elif(dF < 35):
                     clyde.stop()
                     stopped = 1
 
@@ -144,7 +144,7 @@ if __name__ == '__main__':
                 elif(dR>35 and dL<35):
                 #In a Right handed L-bracket
                     clyde.right(50)
-                elif(dR>40 and dL>40):
+                elif(dR>35 and dL>35):
                 #In a T-Junction
                     if(dR>dL):
                         clyde.right(50)
@@ -154,11 +154,11 @@ if __name__ == '__main__':
                 #Cornered!
                     clyde.backward(30,2)
                     clyde.left(100,10)
-                elif(dF>40 and dR<35 and dL<35):
+                elif(dF>35 and dR<35 and dL<35):
                 #back in a corridor
                     clyde.forward(50)
                     stopped = 0
-                elif(dF>40 and dR>35 and dL>35):
+                elif(dF>35 and dR>35 and dL>35):
                 #In open space
                     clyde.forward(50)
                     stopped = 0
