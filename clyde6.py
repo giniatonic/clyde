@@ -123,7 +123,8 @@ if __name__ == '__main__':
             dR = distances[1]
             dL = distances[2]
             print('%f, %f, %f' % (dF, dR, dL))
-            if stopped == 0:
+
+            if stopped == 0: #If moving
                 print('case1')
                 if(dF > 25 and dR < 25 and dL < 25):
                 #In a corridor
@@ -149,7 +150,7 @@ if __name__ == '__main__':
                     clyde.stop()
                     stopped = 1
 
-            if stopped == 1:
+            if stopped == 1: #If stopped (not moving)
                 print('case7')
                 if(dF<25 and dR<25 and dL>25):
                     print('case8')
@@ -183,6 +184,8 @@ if __name__ == '__main__':
                 #In open space
                     clyde.forward(50)
                     stopped = 0
+                else:
+                    clyde.right(100,2)
 
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
