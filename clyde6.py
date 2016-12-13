@@ -156,20 +156,20 @@ if __name__ == '__main__':
                 if(dF<25 and dR<25 and dL>25):
                     print('case8')
                 #In a Left handed L-bracket
-                    clyde.left(100,5.5)
+                    clyde.left(100,3)
                 elif(dF<25 and dR>25 and dL<25):
                     print('case9')
                 #In a Right handed L-bracket
-                    clyde.right(100,5.5)
+                    clyde.right(100,3)
                 elif(dF<25 and dR>25 and dL>25):
                     print('case10')
                 #In a T-Junction
                     if(dR>dL):
                         print('case11')
-                        clyde.right(100,5.5)
+                        clyde.right(100,3)
                     elif(dR<dL):
                         print('case12')
-                        clyde.left(100,5.5)
+                        clyde.left(100,3)
                 elif(dF<25 and dR<25 and dL<25):
                     print('case13')
                 #Cornered!
