@@ -143,6 +143,11 @@ if __name__ == '__main__':
                     print('case6')
                     clyde.stop()
                     stopped = 1
+                elif(dF>25 and (dR<25 or dL<25))
+                #Obstacle to the side
+                    print('case16')
+                    clyde.stop()
+                    stopped = 1
 
             if stopped == 1:
                 print('case7')
