@@ -116,7 +116,7 @@ if __name__ == '__main__':
         threads[2].start()
         #lock = threading.Lock()
         time.sleep(1)
-        stopped = 0
+        stopped = 1
         while True:
             #lock.acquire()
             dF = distances[0]
