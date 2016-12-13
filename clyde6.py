@@ -122,6 +122,7 @@ if __name__ == '__main__':
             dF = distances[0]
             dR = distances[1]
             dL = distances[2]
+
             print('%f, %f, %f' % (dF, dR, dL))
 
             if stopped == 0: #If moving
