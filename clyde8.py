@@ -162,10 +162,13 @@ if __name__ == '__main__':
                 print('case10')
                 clyde.forward(50)
             else:
+                print('case11')
                 clyde.stop()
                 if(dR>dL):
+                    print('case12')
                     clyde.right(100,2)
                 else:
+                    print('case13')
                     clyde.left(100,2)
 
             time.sleep(.1)
