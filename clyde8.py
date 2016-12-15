@@ -19,7 +19,7 @@ def us_run(threadID,name,trigger, echo, stop_event):
     while not stop_event.is_set():
         distances[threadID] = measure_average(trigger, echo)
         time.sleep(0.1)
-        print('Distance' + name + ': %.1f' % distances[threadID])
+        #print('Distance' + name + ': %.1f' % distances[threadID])
 
 
 def measure(trigpin,echopin):
@@ -130,7 +130,7 @@ if __name__ == '__main__':
                 print('case1')
                 clyde.stop()
                 clyde.backward(30,2)
-                clyde.left(150,7) #turn around
+                clyde.right(150,4) #turn around
             elif(dF<15 and dR<15 and dL>15):
             #Blocked in front and to the right
                 print('case2')
