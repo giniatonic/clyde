@@ -130,28 +130,28 @@ if __name__ == '__main__':
                 print('case1')
                 clyde.stop()
                 clyde.backward(30,2)
-                clyde.left(150,10) #turn around
+                clyde.left(150,7) #turn around
             elif(dF<15 and dR<15 and dL>15):
             #Blocked in front and to the right
                 print('case2')
                 clyde.stop()
-                clyde.left(150,2)
+                clyde.left(150,1)
             elif(dF<15 and dR>15 and dL<15):
             #Blocked in front and to the left
                 print('case3')
                 clyde.stop()
-                clyde.right(150,2)
+                clyde.right(150,1)
             elif(dF<15 and dR>15 and dL>15):
             #At an intersection where he could go right or left
                 print('case4')
                 if(dR>dL):
                 #Decides to go right
                     print('case5')
-                    clyde.right(150,3)
+                    clyde.right(150,2)
                 else:
                 #Decides to go left
                     print('case6')
-                    clyde.left(150,3)
+                    clyde.left(150,2)
             elif(dF>15 and dR<15 and dL<15):
             #In a corridor
                 print('case7')
@@ -160,12 +160,12 @@ if __name__ == '__main__':
             #Askew in a corridor
                 print('case8')
                 clyde.stop()
-                clyde.left(150,2)
+                clyde.left(150,1)
             elif(dF>15 and dR>15 and dL<15):
             #Askew in a corridor
                 print('case9')
                 clyde.stop()
-                clyde.right(150,2)
+                clyde.right(150,1)
             elif(dF>15 and dR>15 and dL>15):
             #In open space
                 print('case10')
@@ -177,11 +177,11 @@ if __name__ == '__main__':
                 if(dR>dL):
                 #Decides to go right
                     print('case12')
-                    clyde.right(150,2)
+                    clyde.right(150,1)
                 else:
                 #Decides to go left
                     print('case13')
-                    clyde.left(150,2)
+                    clyde.left(150,1)
 
             time.sleep(.1)
             #print('distances: %.1f , %.1f' % (distances[0], distances[1]))
